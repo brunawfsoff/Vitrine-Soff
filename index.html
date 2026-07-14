@@ -1,0 +1,103 @@
+
+<div style='max-width: 950px; margin: 20px auto; font-family: "Segoe UI", Roboto, Arial, sans-serif;'>
+    
+    <div style='margin-bottom: 20px; padding: 15px 25px; background: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border-left: 5px solid #333;'>
+        <label for="lojaFilter" style="font-weight: 700; color: #1a1a1a; font-size: 16px; margin: 0;">📍 Selecione a Loja:</label>
+        <select id="lojaFilter" style="padding: 10px 15px; border-radius: 8px; border: 1px solid #d1d5db; font-size: 15px; font-weight: 500; width: 350px; cursor: pointer; outline: none; background-color: white; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);">
+            <option value='Todas'>Todas as Lojas</option><option value='1. Plaza Shopping'>1. Plaza Shopping</option><option value='10. Patteo Olinda'>10. Patteo Olinda</option><option value='11. Manaira 1'>11. Manaira 1</option><option value='12. RioMar'>12. RioMar</option><option value='14. Manaira 2'>14. Manaira 2</option><option value='15. Salvador Shopping'>15. Salvador Shopping</option><option value='16. Conquista Sul'>16. Conquista Sul</option><option value='2. Caruaru Shopping'>2. Caruaru Shopping</option><option value='3. Shopping Guarapes'>3. Shopping Guarapes</option><option value='4. Natal Shopping'>4. Natal Shopping</option><option value='5. Shopping Difusora'>5. Shopping Difusora</option><option value='6. Midway Mall'>6. Midway Mall</option><option value='7. Shopping Recife'>7. Shopping Recife</option><option value='9. Campina Grande'>9. Campina Grande</option>
+        </select>
+    </div>
+
+    <div id='calendario-vitrines' style='background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);'></div>
+</div>
+
+<style>
+    .fc-toolbar-title {
+        color: #111827 !important; 
+        font-weight: 800 !important; 
+        font-size: 1.65em !important;
+        text-transform: capitalize; 
+        font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+    }
+    .fc-button-primary {
+        background-color: #111827 !important;
+        border-color: #111827 !important;
+        font-weight: 600 !important;
+    }
+    .fc-button-primary:hover {
+        background-color: #374151 !important;
+        border-color: #374151 !important;
+    }
+    .fc-daygrid-day-number {
+        color: #111827 !important; 
+        font-weight: 800 !important; 
+        font-size: 1.15em !important;
+        text-decoration: none !important;
+        padding: 8px !important;
+    }
+    .fc-col-header-cell-cushion {
+        color: #111827 !important;
+        font-weight: 800 !important;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        text-decoration: none !important;
+    }
+    .fc-day-today {
+        background-color: #f3f4f6 !important; 
+    }
+</style>
+
+<script>
+  var allEvents = [{"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "1. Plaza Shopping"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "1. Plaza Shopping"}, {"title": "Legend Elixir (Vestimenta)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "1. Plaza Shopping"}, {"title": "Legend Elixir (Vitrine da Esquerda)", "start": "2026-08-01", "end": "2026-08-15", "color": "#00FF00", "textColor": "#FFFFFF", "loja": "1. Plaza Shopping"}, {"title": "212 Men Parfum (Vitrine da Direita)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FFD700", "textColor": "#000000", "loja": "1. Plaza Shopping"}, {"title": "212 Men Parfum (Vitrine \u00danica)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "10. Patteo Olinda"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "10. Patteo Olinda"}, {"title": "La Bomba Intense (Vitrine \u00danica)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "10. Patteo Olinda"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "10. Patteo Olinda"}, {"title": "Legend Elixir (Vitrine \u00danica)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "11. Manaira 1"}, {"title": "Legend Elixir (Vestimenta)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "11. Manaira 1"}, {"title": "212 Men Parfum (Vitrine da Direita)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FFD700", "textColor": "#000000", "loja": "12. RioMar"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "12. RioMar"}, {"title": "La Bomba Intense (Capa de Alarme)", "start": "2026-08-16", "end": "2026-09-01", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "Legend Elixir (Capa de Alarme)", "start": "2026-08-01", "end": "2026-08-15", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "Legend Elixir (Vestimenta)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "Legend Elixir (Vitrine da Esquerda)", "start": "2026-08-01", "end": "2026-08-15", "color": "#00FF00", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "212 Men Parfum (Vitrine da Direita)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FFD700", "textColor": "#000000", "loja": "15. Salvador Shopping"}, {"title": "212 Men Parfum (Capa de Alarme)", "start": "2026-07-29", "end": "2026-08-16", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "15. Salvador Shopping"}, {"title": "La Bomba Intense (Capa de Alarme)", "start": "2026-08-16", "end": "2026-09-01", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "Legend Elixir (Vitrine da Direita)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FFD700", "textColor": "#000000", "loja": "16. Conquista Sul"}, {"title": "212 Men Parfum (Vitrine da Direita)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FFD700", "textColor": "#000000", "loja": "2. Caruaru Shopping"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "2. Caruaru Shopping"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "2. Caruaru Shopping"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "2. Caruaru Shopping"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "3. Shopping Guarapes"}, {"title": "La Bomba Intense (Capa de Alarme)", "start": "2026-08-16", "end": "2026-09-01", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "Legend Elixir (Vitrine da Direita)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FFD700", "textColor": "#000000", "loja": "3. Shopping Guarapes"}, {"title": "Seduction X (Capa de Alarme)", "start": "2026-07-27", "end": "2026-08-10", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "Seduction X (Vestimenta)", "start": "2026-07-27", "end": "2026-08-10", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "Seduction X (Vitrine da Esquerda)", "start": "2026-07-27", "end": "2026-08-10", "color": "#00FF00", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "4. Natal Shopping"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "4. Natal Shopping"}, {"title": "Legend Elixir (Vitrine da Direita)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FFD700", "textColor": "#000000", "loja": "4. Natal Shopping"}, {"title": "Legend Elixir (Vestimenta)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "4. Natal Shopping"}, {"title": "212 Men Parfum (Vitrine \u00danica)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "La Bomba Intense (Vitrine \u00danica)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "212 Men Parfum (Vitrine da Direita)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FFD700", "textColor": "#000000", "loja": "6. Midway Mall"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "6. Midway Mall"}, {"title": "La Bomba Intense (Vitrine da Direita)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FFD700", "textColor": "#000000", "loja": "6. Midway Mall"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "6. Midway Mall"}, {"title": "212 Men Parfum (Vitrine \u00danica)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "212 Men Parfum (Vestimenta)", "start": "2026-07-29", "end": "2026-08-16", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "La Bomba Intense (Vitrine \u00danica)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "La Bomba Intense (Vestimenta)", "start": "2026-08-16", "end": "2026-09-01", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "Legend Elixir (Vitrine da Direita)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FFD700", "textColor": "#000000", "loja": "9. Campina Grande"}, {"title": "Legend Elixir (Vestimenta)", "start": "2026-08-01", "end": "2026-08-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "9. Campina Grande"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "1. Plaza Shopping"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "1. Plaza Shopping"}, {"title": "L12 Bleu (Vitrine \u00danica)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "11. Manaira 1"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "11. Manaira 1"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "12. RioMar"}, {"title": "L12 Bleu (Capa de Alarme)", "start": "2026-09-01", "end": "2026-09-15", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "12. RioMar"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "14. Manaira 2"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "14. Manaira 2"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "15. Salvador Shopping"}, {"title": "L12 Bleu (Capa de Alarme)", "start": "2026-09-01", "end": "2026-09-15", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "15. Salvador Shopping"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "2. Caruaru Shopping"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "2. Caruaru Shopping"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "3. Shopping Guarapes"}, {"title": "L12 Bleu (Capa de Alarme)", "start": "2026-09-01", "end": "2026-09-15", "color": "#1E90FF", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "3. Shopping Guarapes"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "4. Natal Shopping"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "4. Natal Shopping"}, {"title": "L12 Bleu (Vitrine \u00danica)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "5. Shopping Difusora"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "6. Midway Mall"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "6. Midway Mall"}, {"title": "L12 Bleu (Vitrine \u00danica)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF1493", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "7. Shopping Recife"}, {"title": "L12 Bleu (Vitrine da Direita)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FFD700", "textColor": "#000000", "loja": "9. Campina Grande"}, {"title": "L12 Bleu (Vestimenta)", "start": "2026-09-01", "end": "2026-09-15", "color": "#FF8C00", "textColor": "#FFFFFF", "loja": "9. Campina Grande"}];
+  var calendar;
+  
+  if (!document.getElementById('fc-css')) {
+      var link = document.createElement('link');
+      link.id = 'fc-css';
+      link.href = 'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css';
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+  }
+  
+  function initCalendar() {
+      var calendarEl = document.getElementById('calendario-vitrines');
+      calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale: 'pt-br',
+          initialDate: '2026-08-01',
+          headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth'
+          },
+          events: allEvents,
+          eventDisplay: 'block',
+          eventTimeFormat: { omitZeroMinute: true, meridiem: false }
+      });
+      calendar.render();
+      
+      document.getElementById('lojaFilter').addEventListener('change', function(e) {
+          var lojaSelecionada = e.target.value;
+          var eventosFiltrados = lojaSelecionada === 'Todas' 
+              ? allEvents 
+              : allEvents.filter(ev => ev.loja === lojaSelecionada);
+              
+          calendar.removeAllEventSources();
+          calendar.addEventSource(eventosFiltrados);
+      });
+  }
+
+  if (typeof FullCalendar === 'undefined') {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js';
+      script.onload = function() {
+          var loc = document.createElement('script');
+          loc.src = 'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js';
+          loc.onload = initCalendar;
+          document.head.appendChild(loc);
+      };
+      document.head.appendChild(script);
+  } else {
+      initCalendar();
+  }
+</script>
